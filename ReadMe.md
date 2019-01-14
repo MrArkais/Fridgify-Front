@@ -1,5 +1,18 @@
 # Fridgify-Front
 
+## Collaborateurs
+
+  - Gobathy MIDOUNAMOURTY
+  - Quentin JEANNOT
+  - Mohammed LAZAAR
+  - Nikola MILOSEVIC
+  - Nicolas DALLET
+  - Thomas LESDEL
+  
+## Présentation de l'idée
+
+Fridgify est une application web permettant de proposer aux utilisateurs de trouver des recettes selon les ingrédients dont ils disposent chez eux.
+
 ## Liens vers la Documentation et le Back-End
 
 [Documentation technique](https://github.com/mlazaar/Fridgify/blob/master/Documentation%20Technique.md)
