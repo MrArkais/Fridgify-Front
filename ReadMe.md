@@ -13,10 +13,6 @@
 
 Fridgify est une application web permettant de proposer aux utilisateurs de trouver des recettes selon les ingrédients dont ils disposent chez eux.
 
-## Outils utilisés
-
-
-
 ## Liens vers la Documentation et le Back-End
 
 [Documentation technique](https://github.com/mlazaar/Fridgify/blob/master/Documentation%20Technique.md)
