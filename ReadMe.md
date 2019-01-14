@@ -16,7 +16,7 @@ Fridgify est une application web permettant de proposer aux utilisateurs de trou
 ## Collaborateurs
 
   - Quentin JEANNOT
-  - Mohammed LAZAAR
+  - Mohamed LAZAAR
   - Nikola MILOSEVIC
   - Nicolas DALLET
   - Thomas LESDEL
