@@ -2,12 +2,12 @@
 
 ## Collaborateurs
 
-  - Gobathy MIDOUNAMOURTY
   - Quentin JEANNOT
   - Mohammed LAZAAR
   - Nikola MILOSEVIC
   - Nicolas DALLET
   - Thomas LESDEL
+  - Gobathy MIDOUNAMOURTY
   
 ## Présentation de l'idée
 
