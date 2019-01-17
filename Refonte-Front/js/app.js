@@ -79,7 +79,7 @@ app.controller('MainCtrl', function($scope, $http, $sce) {
 
         if ($scope.myModel != "" && $scope.myModel != null)
         {
-            $scope.ingredient= $scope.myModel.toString();
+            /*$scope.ingredient= $scope.myModel.toString();
 
             console.log($scope.ingredient);
 
@@ -99,7 +99,60 @@ app.controller('MainCtrl', function($scope, $http, $sce) {
 
                     $scope.length = response.data.length;
 
-                });
+                });*/
+
+            $scope.data = [
+                {
+                    "id": 1,
+                    "picture": "https://static.cuisineaz.com/400x320/i93683-tarte-alsacienne-aux-pommes.jpg",
+                    "title": "Tarte aux pommes",
+                    "listIngredient": [
+                        {
+                            "title": "pommes"
+                        },
+                        {
+                            "title": "oeufs"
+                        }
+                    ],
+                    "preparation": "<ul><li>Déroulez, étalez et piquez la pâte dans un moule à tarte. Pelez, videz et coupez en fines tranches les pommes. Posez-les sur la pâte en rosace. </li> <li>Dans un saladier, battez les œufs avec le sucre, puis ajoutez la crème et la cannelle. Versez le mélange sur les pommes. </li><li><b>Pour finir</b> \n Mettez au four à 210°C (thermostat 7) pour 40 minutes environ. Vers la fin de la cuisson, répartissez sur la tarte le sucre vanillé et remettez au four pour caramélisé. </li></ul>",
+                    "titleIngredient": [
+                        "pommes",
+                        "oeufs"
+                    ]
+                },
+                {
+                    "id": 2,
+                    "picture": "https://static.cuisineaz.com/400x320/i88809-raclette.jpg",
+                    "title": "Raclette",
+                    "listIngredient": [
+                        {
+                            "title": "patate"
+                        },
+                        {
+                            "title": "fromage"
+                        }
+                    ],
+                    "preparation": "test",
+                    "titleIngredient": [
+                        "patate",
+                        "fromage"
+                    ]
+                },
+                {
+                    "id": 3,
+                    "picture": "https://www.atelierdeschefs.com/media/recette-e30299-pizza-pepperoni-tomate-mozza.jpg",
+                    "title": "Pizza Pepperoni",
+                    "listIngredient": [
+                        {
+                            "title": "tomates"
+                        }
+                    ],
+                    "preparation": "test",
+                    "titleIngredient": [
+                        "tomates"
+                    ]
+                }
+            ];
 
         }
         else {
