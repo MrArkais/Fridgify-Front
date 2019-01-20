@@ -20,8 +20,15 @@ pre{
     font-size: 10px;
 }
 .ng-invalid{
-    border-color: red !important;
+    border-color: #1c7430 !important;
 }
+
+.welcome {
+    background-image: url("nourr.jpg");
+    font-weight: bold;
+
+}
+
 
 /**
  * Email Contacts
@@ -44,6 +51,9 @@ pre{
     opacity: 0.5;
 }
 
+.card {
+    max-width: 18rem;
+}
 .card-img-top {
     width: 18rem;
     height: 200px;
@@ -56,8 +66,14 @@ pre{
 
 .formIng {
     display: flex;
+    width: 100%;
 }
 
-#contenu {
-    background-image: url("nourr.jpg");
+/*Classe du formulaire Selectize*/
+.selectize-control{
+    width: 100%;
+}
+
+.txtFound {
+    text-align: center;
 }
