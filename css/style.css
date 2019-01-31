@@ -38,7 +38,6 @@ h1{
     border-color: #f39c12 !important;
 }
 
-
 .nav-item a{
     font-family: Acme;
     color: #ffffff;
@@ -54,6 +53,15 @@ h1{
     background-color: #f39c12;
 }
 
+footer{
+    background-color: #f39c12;
+}
+
+footer p{
+    font-family: Acme;
+    color: #ffffff;
+    font-size: 1.5em;}
+
 .navbar button{
     background-color: #f39c12;
     border-color: white !important;
@@ -65,6 +73,7 @@ h1{
     border-color: #f39c12 !important;
     color:#f39c12;
 }
+
 
 
 .flex-wrap {
@@ -175,7 +184,6 @@ h3 {
     padding:0 7px;
 }
 
-a:link, a:visited {color: #339187; text-decoration:none;font-weight:700;}
 a:hover {color: #D61650;text-decoration:none;}
 a:active {text-decoration:underline;}
 

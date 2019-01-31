@@ -85,8 +85,6 @@ myAngular.controller('MainCtrl', function($scope, $http, $sce) {
         }
     };
 
-
-
     $scope.to_trusted = function(html_code) {
         return $sce.trustAsHtml(html_code);
     }
