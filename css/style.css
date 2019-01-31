@@ -1,63 +1,71 @@
 /* Styles go here */
-body{
-    font-family: 'Open Sans', Helvetica, arial, sans-serif;
-    font-size: 14px;
 
-    }
-.header {
-    font-size: 20px;
-    font-weight: 600;
-    padding-top: 0;
-    margin-bottom: 10px;
-    margin-top: 40px;
+html {
+    font-family: 'Spinnaker', Helvetica, arial, sans-serif;
 }
-b{
-    font-weight: normal;
-    margin-bottom: 10px;
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    list-style-type: none;
 }
-pre{
-    background: rgb(239, 239, 239);
-    font-size: 10px;
+.jumbotron{
+    color: white;
+    background-color: #f39c12 ;
+}
+
+h1{
+    font-family: "Shadows Into Light";
+    font-weight: bold;
+    font-size: 6em;
+    text-align: center;
+    color: white;
+}
+
+.navbar{
+    padding-top: 30px;
+}
+
+.navbar a{
+    font-family: Shadows Into Light;
+    font-weight: bold;
+    font-size: 2em;
 }
 .ng-invalid{
-    border-color: #1c7430 !important;
-}
-
-.welcome {
-    background-image: url("nourr.jpg");
-    font-weight: bold;
-
+    border-color: #f39c12 !important;
 }
 
 
-/**
- * Email Contacts
- */
-.selectize-control.contacts .selectize-input [data-value] .email {
-    opacity: 0.5;
-}
-.selectize-control.contacts .selectize-input [data-value] .name + .email {
-    margin-left: 5px;
-}
-.selectize-control.contacts .selectize-input [data-value] .email:before {
-    content: '<';
-}
-.selectize-control.contacts .selectize-input [data-value] .email:after {
-    content: '>';
-}
-.selectize-control.contacts .selectize-dropdown .caption {
-    font-size: 12px;
-    display: block;
-    opacity: 0.5;
+.nav-item a{
+    font-family: Acme;
+    color: #ffffff;
+    font-size: 1.5em;
 }
 
-.card {
-    max-width: 18rem;
+.nav-item a:hover{
+    color: #3d3d3d;
+    font-size: 1.5em;
 }
-.card-img-top {
-    width: 18rem;
-    height: 200px;
+
+.navbar {
+    background-color: #f39c12;
 }
+
+.navbar button{
+    background-color: #f39c12;
+    border-color: white !important;
+    color:white;
+}
+
+.navbar button:hover{
+    background-color: white;
+    border-color: #f39c12 !important;
+    color:#f39c12;
+}
+
 
 .flex-wrap {
     margin-right: 30px;
@@ -74,6 +82,130 @@ pre{
     width: 100%;
 }
 
+.selectize-control input{
+    height: 4%;
+}
+
+ .selectize-control input::placeholder{
+     color:#3d3d3d;
+     font-size: 1.1em;
+     font-family: Acme;
+     font-weight: bold; }
+
 .txtFound {
     text-align: center;
+}
+
+
+/*  Card Box Recette */
+
+body {
+    color:black;
+    background:url('https://subtlepatterns.com/patterns/gplaypattern.png');
+}
+
+h3 {
+    font-size:0.9em;
+    font-weight:900;
+    color:#FFF;
+}
+
+#recipes{
+    background:url('https://subtlepatterns.com/patterns/gplaypattern.png');
+}
+
+.recipe {
+    background:#f1f1f1;
+    max-width:300px;
+    height:300px;
+    position:relative;
+    display:inline-block;
+    overflow:hidden;
+    cursor: pointer;
+    margin:0 10px 10px 0;
+    -webkit-border-radius:0 0 7px 7px;
+    border-radius:0 0 7px 7px;
+    -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    -moz-box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+.image {
+    height:250px;
+    overflow:hidden;
+    position:relative;
+}
+.image img{
+    width:160%;
+    transition: all 1s ease;
+    margin-top:-70px;
+}
+.image:hover img{
+    transform: scale(1.2) rotate(-3deg);
+    -ms-transform: scale(1.2) rotate(-3deg); /* IE 9 */
+    -webkit-transform: scale(1.2) rotate(-3deg); /* Safari and Chrome */
+}
+
+.name {
+    width:100%;
+    height:50px;
+    background:#f39c12;
+    opacity: 0.85;
+    filter: alpha(opacity=85); /* IE8 and Lower */
+    zoom: 1; /* set "zoom", "width" or "height" to trigger "hasLayout" in IE 7 and lower */
+    overflow:hidden;
+    position:absolute;
+    padding-top: 15px;
+    bottom:0;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    border-bottom:1px dotted #f39c12;
+}
+.media {
+    width:100%;
+    font-size:0.7em;
+    color:#777;
+    padding:15px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+}
+.media li {
+    display:inline-block;
+    padding:0 7px;
+}
+
+a:link, a:visited {color: #339187; text-decoration:none;font-weight:700;}
+a:hover {color: #D61650;text-decoration:none;}
+a:active {text-decoration:underline;}
+
+/* Pulse Animation for Firefox, Opera and Internet Explorer 10 */
+@keyframes pulse {
+    from {
+        transform: scale(1.0);
+        opacity: 1.0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1.0;
+    }
+    to {
+        transform: scale(1.0);
+        opacity: 1.0;
+    }
+}
+/* Pulse Animation for Google Chrome and Safari */
+@-webkit-keyframes pulse {
+    from {
+        -webkit-transform: scale(1.0);
+        opacity: 1.0;
+    }
+    50% {
+        -webkit-transform: scale(1.2);
+        opacity: 1.0;
+    }
+    to {
+        -webkit-transform: scale(1.0);
+        opacity: 1.0;
+    }
 }

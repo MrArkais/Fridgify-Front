@@ -10,11 +10,6 @@
     <script src="js/angular-selectize.js"></script>
     <script src="js/myAngular.js"></script>
     <script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/scrolling-nav.css" >
-    <link rel=stylesheet href="css/selectize.css">
-    <link rel=stylesheet href="css/style.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700">
 
     <!--Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -23,43 +18,56 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/scrolling-nav.css" >
+    <link rel=stylesheet href="css/selectize.css">
+    <link rel=stylesheet href="css/style.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Acme|Pacifico|Shadows+Into+Light|Spinnaker|Raleway" rel="stylesheet">
+
+
+
+
 </head>
 <body ng-controller="MainCtrl" ng-submit="submit()">
 
 <!-- NAVBAR Fixée en entete -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <img src="css/logo2.PNG"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-                </li>
-            </ul>
+<nav class="navbar sticky-top ">
+    <div class="pos-f-t">
+        <nav class="navbar navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="navbar p-4">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" id="btnByIng" href="#">Filtre avancées </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ajouter une recette</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
+    <form name='myForm' class="formIng col-lg-8 mx-auto">
+        <a class="navbar-brand" style="color: #ffffff" href="#">
+            <!-- <img src="css/logo2.png" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+            Fridgify
+        </a>
+        <selectize  class="mr-sm-2 " placeholder='Je cherche une recette avec des pommes? des oeufs?...' options='myOptions' name='myName' config="myConfig" ng-model="myModel" ng-disabled='disable' required='true'></selectize>
+        <button  class="btn  my-2 my-sm-0 " type="submit" ng-click="doListSearch()"><i class="fas fa-search"></i></button>
+    </form>
 </nav>
 
-<header class="welcome text-white">
-    <div class="container text-center">
-        <h1>Bienvenue sur Fridgify !</h1>
-        <p class="lead">Des recettes , à portée de clics !</p>
-    </div>
-</header>
 
-<section id="searching">
-
-    <!-- Corps du site -->
+<!--
+ <section id="searching">
 
     <div id="search" class="container">
         <div class="row" id="byList" style="display: none">
@@ -73,7 +81,6 @@
             </div>
         </div>
 
-
         <div class="row" id="byIng">
             <div class="col-lg-8 mx-auto">
                 <h2>Rechercher par ingrédients :</h2>
@@ -84,37 +91,50 @@
                 <button type="button" class="btn btn-link" id="btnByList">Rechercher par liste d'ingrédients</button>
             </div>
         </div>
-
     </div>
 </section>
+-->
 
-<section id="recipes" class="bg-light">
-
+<section id="recipes">
     <div class="txtFound">
         <h2 ng-if="data!=null" class="lead"><strong class="text-danger">{{length}}</strong> recette(s) trouvée(s) avec les ingrédients : <strong class="text-danger">{{ingredient}}</strong></h2>
     </div>
 
-    <div class="container">
-        <div class="row" ng-if="data!= null">
-                <div class="d-flex flex-wrap justify-content-center" ng-repeat="row in data">
-                    <div class="card">
-                        <img class="card-img-top "ng-src="{{row.picture}}" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{row.title}}</h5>
-                            <p class="card-text">{{row.listIngredient}}</p>
-                            <a ng-click="edit(length)" class="btn btn-primary">Afficher la recette</a>
+    <div class="container" id="hideWhenSearch">
+        <div class="jumbotron">
+            <h1 class="display-4">Recettes vedette du jour</h1>
+        </div>
+
+
+        <div class="row" ng-if="allRecipe!= null">
+            <div class="d-flex flex-wrap justify-content-center" ng-repeat="row in allRecipe">
+                <!-- Recipe Start -->
+                <div class="recipe">
+                    <div class="image">
+                        <a><img ng-src="{{row.picture}}"></a>
+                        <div class="name">
+                            <h3>{{row.title}}</h3>
                         </div>
                     </div>
+                    <ul class="media">
+                        <li><i class="fa fa-clock-o"></i> 30 Minutes</li>
+                        <li><i class="fa fa-leaf"></i> Facile</li>
+                        <li><i class="fa fa-cutlery"></i> 4 personnes</li>
+                    </ul>
                 </div>
+                <!-- Recipe End -->
 
             </div>
 
-            <div class="row" ng-if="data == null && empty == 'empty'">
-                <div class="txtFound">
+
+        </div>
+
+        <div class="row" ng-if="data == null && empty == 'empty'">
+            <div class="txtFound">
                 <h2 class="lead"><strong class="text-danger">{{length}}</strong> recette trouvée avec les ingrédients : <strong class="text-danger">{{ingredient}}</strong></h2>
-                </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 
@@ -142,8 +162,10 @@
 <script>
     $(document).ready(function(){
         $("#btnByIng").click(function(){
-            $("#btnByIng").hide();
+            $("#hideWhenSearch").hide();
             $("#byList").hide();
+            $("#btnByIng").hide();
+
 
             $("#byIng").show();
             $("#btnByList").show();
@@ -156,6 +178,7 @@
             $("#btnByIng").show();
         });
     });
+
 </script>
 
 <!--
@@ -184,38 +207,38 @@
         </div>
 -->
 
-        <!--
-                <section class="col-xs-12 col-sm-6 col-md-12" ng-repeat="row in data">
-                    <article class="search-result row">
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <a href="#"><img ng-src="{{row.picture}}"/></a>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-2">
-                            <ul class="meta-search">
-                                <li><i class="glyphicon glyphicon-star"></i> <span>4 étoiles</span></li>
-                                <li><i class="glyphicon glyphicon-time"></i> <span>5 minutes</span></li>
-                                <li><i class="glyphicon glyphicon-tags"></i> <span>Pizza</span></li>
-                            </ul>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                            <h3><a href="#" title="">{{row.title}}</a></h3>
+<!--
+        <section class="col-xs-12 col-sm-6 col-md-12" ng-repeat="row in data">
+            <article class="search-result row">
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <a href="#"><img ng-src="{{row.picture}}"/></a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2">
+                    <ul class="meta-search">
+                        <li><i class="glyphicon glyphicon-star"></i> <span>4 étoiles</span></li>
+                        <li><i class="glyphicon glyphicon-time"></i> <span>5 minutes</span></li>
+                        <li><i class="glyphicon glyphicon-tags"></i> <span>Pizza</span></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                    <h3><a href="#" title="">{{row.title}}</a></h3>
 
 
-                            <ul>
-                                <li><h4><b>Ingrédients :</b></h4></li>
-                                <p class="ingr" ng-repeat="array in row.liste_ingredients">{{array.title}}</p>
-                                </li>
-                            </ul>
+                    <ul>
+                        <li><h4><b>Ingrédients :</b></h4></li>
+                        <p class="ingr" ng-repeat="array in row.liste_ingredients">{{array.title}}</p>
+                        </li>
+                    </ul>
 
-                            <p ng-bind-html = "to_trusted(row.preparation)" > </p>
-                            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
-                        </div>
-                        <span class="clearfix borda"></span>
-                    </article>
+                    <p ng-bind-html = "to_trusted(row.preparation)" > </p>
+                    <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+                </div>
+                <span class="clearfix borda"></span>
+            </article>
 
-            </div>
+    </div>
 
-            </section>-->
+    </section>-->
 
 
 <!--
