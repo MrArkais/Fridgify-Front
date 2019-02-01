@@ -1,12 +1,4 @@
-var myAngular = angular.module('app', ['selectize','ngRoute']);
-//===================
-//Factory
-//===================
-
-
-
-
-
+var myAngular = angular.module('app', ['selectize','ngRoute','ngMaterial','ngMessages']);
 
 // configurer les routes
 myAngular.config(function($routeProvider, $locationProvider) {
@@ -30,7 +22,13 @@ myAngular.config(function($routeProvider, $locationProvider) {
         .when('/contact', {
             templateUrl : 'pages/contact.html',
             controller  : 'contactController'
+        })
+
+        .otherwise ({
+            templateUrl : 'pages/multiplesearch.html',
+            controller : 'Multiple'
         });
+
 });
 
 
@@ -39,52 +37,64 @@ myAngular.config(function($routeProvider, $locationProvider) {
 //=======================================
 
 //=======================================
-//Controleur Carroussel
+//Controleur Resultats
 //=======================================
-myAngular.controller('printall', function ($scope, $http) {
+myAngular.controller('printall', function ($scope, $http, $mdDialog) {
 
-/*    $scope.$on('topic', function (event, arg) {
-        $scope.receiver = 'got your ' + arg;
+    $scope.search = false;
+
+    $scope.$on('print', function (event, arg) {
+        $scope.allRecipe = arg;
     });
 
     $scope.$on('length', function (event,arg) {
         $scope.length = arg;
 
-    })*/
-
-    var uriAllRecipe = "http://localhost:9090/recipes/recipes";
-    $scope.allRecipe = [];
-
-    $http.get(uriAllRecipe)
-        .then(function(response) {
-            console.log(response.data.length);
-            if (response.data.length == 0)
-            {
-                $scope.allRecipe = null;
-            }
-            else {
-                $scope.allRecipe = response.data;
-                console.log($scope.allRecipe);
-            }
-            $scope.lengthAllRecipe = response.data.length;
-        });
-
-})
-
-//=======================================
-//Controleur Resultat
-//=======================================
-myAngular.controller('Result', function ($scope) {
-
-    $scope.$on('print', function (event, arg) {
-        $scope.data = arg;
-
     })
 
-    $scope.$on('length', function (event,arg) {
-        $scope.length = arg;
-
+    $scope.$on('search', function (event, arg) {
+        $scope.search = arg;
+        $scope.text = "Resultats de la recherche : "
     })
+
+    if ($scope.search === false)
+    {
+        $scope.text = "Recettes du jour";
+        var uriAllRecipe = "http://localhost:9090/recipes/recipes";
+        $scope.allRecipe = [];
+
+        $http.get(uriAllRecipe)
+            .then(function(response) {
+                console.log(response.data.length);
+                if (response.data.length == 0)
+                {
+                    $scope.allRecipe = null;
+                }
+                else {
+                    $scope.allRecipe = response.data;
+                    console.log($scope.allRecipe);
+                }
+                $scope.lengthAllRecipe = response.data.length;
+            });
+    }
+
+
+    $scope.showDialog = function(ev) {
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog1.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+            .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                $scope.status = 'You cancelled the dialog.';
+            });
+    };
+
 })
 
 //=======================================
@@ -145,6 +155,7 @@ myAngular.controller('Single', function($rootScope,$scope, $http) {
 
                     $rootScope.$broadcast('length', $scope.length);
                     $rootScope.$broadcast('print', $scope.data);
+                    $rootScope.$broadcast('search', true);
                 });
 
 
@@ -211,7 +222,6 @@ myAngular.controller('Multiple', function($scope, $http, $rootScope) {
             $http.get(completeURL)
                 .then(function(response) {
 
-                    console.log("je suis la");
                     if (response.data.length === 0)
                     {
                         $scope.data = null;
@@ -225,6 +235,8 @@ myAngular.controller('Multiple', function($scope, $http, $rootScope) {
 
                     $rootScope.$broadcast('length', $scope.length);
                     $rootScope.$broadcast('print', $scope.data);
+                    $rootScope.$broadcast('search', true);
+
                 });
 
 
