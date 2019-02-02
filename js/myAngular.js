@@ -1,4 +1,4 @@
-var myAngular = angular.module('app', ['selectize','ngRoute','ngMaterial','ngMessages']);
+var myAngular = angular.module('app', ['selectize','ngRoute'/*,'ngMaterial','ngMessages'*/]);
 
 // configurer les routes
 myAngular.config(function($routeProvider, $locationProvider) {
@@ -35,11 +35,25 @@ myAngular.config(function($routeProvider, $locationProvider) {
 //=======================================
 //Fin routing
 //=======================================
+(function (module) {
+
+    var MoviesController = function ($scope, $http) {
+
+        $http.get("/recipes/recipes")
+            .then(function (result) {
+                $scope.movies = result.data;
+            });
+    };
+
+    module.controller("MoviesController",
+        ["$scope", "$http", MoviesController]);
+
+}(angular.module("app")));
 
 //=======================================
 //Controleur Resultats
 //=======================================
-myAngular.controller('printall', function ($scope, $http, $mdDialog) {
+myAngular.controller('printall', function ($scope, $http/*, $mdDialog*/) {
 
     $scope.search = false;
 
@@ -78,7 +92,7 @@ myAngular.controller('printall', function ($scope, $http, $mdDialog) {
             });
     }
 
-
+/*
     $scope.showDialog = function(ev) {
         $mdDialog.show({
             controller: DialogController,
@@ -93,7 +107,7 @@ myAngular.controller('printall', function ($scope, $http, $mdDialog) {
             }, function() {
                 $scope.status = 'You cancelled the dialog.';
             });
-    };
+    };*/
 
 })
 
