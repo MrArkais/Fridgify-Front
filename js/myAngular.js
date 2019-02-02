@@ -18,11 +18,6 @@ myAngular.config(function($routeProvider, $locationProvider) {
             controller  : 'Single'
         })
 
-        // route for the contact page
-        .when('/contact', {
-            templateUrl : 'pages/contact.html',
-            controller  : 'contactController'
-        })
 
         .otherwise ({
             templateUrl : 'pages/multiplesearch.html',
@@ -35,18 +30,22 @@ myAngular.config(function($routeProvider, $locationProvider) {
 //=======================================
 //Fin routing
 //=======================================
+
+//=======================================
+//Controlleur pour faire tests (get All)
+//=======================================
 (function (module) {
 
-    var MoviesController = function ($scope, $http) {
+    var RecipesAll = function ($scope, $http) {
 
         $http.get("/recipes/recipes")
             .then(function (result) {
-                $scope.movies = result.data;
+                $scope.recipes = result.data;
             });
     };
 
-    module.controller("MoviesController",
-        ["$scope", "$http", MoviesController]);
+    module.controller("RecipesAll",
+        ["$scope", "$http", RecipesAll]);
 
 }(angular.module("app")));
 
