@@ -18,6 +18,12 @@ myAngular.config(function($routeProvider, $locationProvider) {
             controller  : 'Single'
         })
 
+        //route pour la recherche avec des ustensiles
+        .when('/ustens', {
+        templateUrl : 'pages/ustensearch.html',
+            controller : 'Ustens'
+    })
+
 
         .otherwise ({
             templateUrl : 'pages/multiplesearch.html',
@@ -79,7 +85,7 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
         $http.get(uriAllRecipe)
             .then(function(response) {
                 console.log(response.data.length);
-                if (response.data.length == 0)
+                if (response.data.length === 0)
                 {
                     $scope.allRecipe = null;
                 }
@@ -105,6 +111,87 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
     };
 
 });
+
+//=======================================
+//Controleur Recherche avec Ustensiles
+//=======================================
+    myAngular.controller('Ustens', function($rootScope,$scope, $http) {
+        $scope.disable = false;
+
+        console.log("Ustens");
+
+        //=======================================================
+        //Angular Form Bindings
+        //=======================================================
+        $scope.myModel;
+
+
+        $scope.myConfig = {
+            create: true,
+            onChange: function(value){
+                console.log('onChange', value)
+            },
+            // maxItems: 1,
+            // required: true,
+        }
+
+
+        $scope.list = [];
+        $scope.text = '';
+
+        $scope.submit = function()
+        {
+
+            if ($scope.myModel !== "" && $scope.myModel != null)
+            {
+
+                $scope.ingredientUstens= $scope.myModel.toString();
+
+
+
+                var completeURL = "http://localhost:9090/recipes/find/ustensil/"+$scope.ingredientUstens;
+
+
+                $http.get(completeURL)
+                    .then(function(response) {
+
+                        console.log(response.data.length);
+                        if (response.data.length === 0)
+                        {
+                            $scope.data = null;
+                        }
+                        else {
+                            $scope.data = response.data;
+                            console.log($scope.data);
+                        }
+
+                        $scope.length = response.data.length;
+
+                        $rootScope.$broadcast('length', $scope.length);
+                        $rootScope.$broadcast('print', $scope.data);
+                        $rootScope.$broadcast('search', true);
+                    });
+
+
+            }
+            else {
+                $scope.data = null;
+                $scope.empty = true;
+                $scope.length = 0;
+            }
+
+
+
+        };
+
+
+
+    });
+
+
+
+
+
 
 //=======================================
 //Controleur Recherche Simple
@@ -136,7 +223,7 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
     $scope.submit = function()
     {
 
-        if ($scope.myModel != "" && $scope.myModel != null)
+        if ($scope.myModel !== "" && $scope.myModel != null)
         {
 
             $scope.ingredient= $scope.myModel.toString();
@@ -151,7 +238,7 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
                 .then(function(response) {
 
                     console.log(response.data.length);
-                    if (response.data.length == 0)
+                    if (response.data.length === 0)
                     {
                         $scope.data = null;
                     }

@@ -12,11 +12,11 @@
         <div class="navbar p-4">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" id="btnByIng" href="/Fridgify-Front/">Rechercher par liste d'ingrédients </a>
+                    <a class="nav-link" id="btnByIng" href="/Fridgify-Front/simple">Recherche simple </a>
                 </li>
                 <hr color="white">
                 <li class="nav-item">
-                    <a class="nav-link" href="/Fridgify-Front/ustens">Rechercher par Ingrédients + Ustensiles</a>
+                    <a class="nav-link" href="/Fridgify-Front/">Rechercher par liste d'ingrédients</a>
                 </li>
             </ul>
         </div>
@@ -26,11 +26,13 @@
 
 <form class="formIng col-lg-8 mx-auto" name='myForm' ng-submit="submit()">
 
+    <a class="navbar-brand" style="color: #ffffff" href="#">
+        <!--
+                 <img src="css/logo2.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        -->
+        Fridgify
+    </a>
+    <selectize  class="mr-sm-2 " placeholder='Je cherche une recette faite au four ?...' options='myOptions' name='myName' config="myConfig" ng-model="myModel" ng-disabled='disable' required='true'></selectize>
+    <button class="btn  my-2 my-sm-0 " type="submit"><i class="fas fa-search"></i></button>
 
-<a class="navbar-brand" style="color: #ffffff" href="#">
-    <!-- <img src="css/logo2.png" width="30" height="30" class="d-inline-block align-top" alt=""> -->
-    Fridgify
-</a>
-<selectize  class="mr-sm-2 " placeholder='Je cherche une recette avec des pommes? des oeufs?...' options='myOptions' name='myName' config="myConfig" ng-model="myModel" ng-disabled='disable' required='true'></selectize>
-<button  class="btnSearch btn  my-2 my-sm-0 " type="submit"><i class="fas fa-search"></i></button>
 </form>
