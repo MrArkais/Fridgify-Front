@@ -92,8 +92,16 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
     }
 
 
-    $scope.clickToOpen = function () {
-        ngDialog.open({ template: 'pages/popup.html', className: 'ngdialog-theme-default' });
+    $scope.clickToOpen = function (row) {
+        $scope.recipeClicked = row;
+        console.log("Data ",row);
+
+        ngDialog.open({
+            template: 'pages/popup.html',
+            className:"ngdialog-theme-default custom-width",
+            scope: $scope
+        });
+
     };
 
 });
@@ -184,8 +192,6 @@ myAngular.controller('Multiple', function($scope, $http, $rootScope) {
     $scope.disable = false;
 
     console.log("Multiple");
-
-
 
     //=======================================================
     //Angular Form Bindings

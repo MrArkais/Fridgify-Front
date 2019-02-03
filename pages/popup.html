@@ -1,6 +1,28 @@
-<div ng-controller="popup">
-    <a><img ng-src="{{row.picture}}"></a>
 
+<div class="container my-dialog" ng-controller="printall">
+    <div class="row">
+        <table>
+            <tr>
+                <td><a ><img  class="popupImg" width="450" height="450" ng-src="{{recipeClicked.picture}}"></a> </td>
+                <td>
+                    <br><br>
+                    <p><i class="fa fa-clock-o"></i><b>Temps de préparation nécessaire : </b>{{recipeClicked.timePreparation}}</p>
+                    <p><i class="fa fa-clock-o"></i><b>Niveau de difficulté : </b>{{recipeClicked.difficultyRecipe}}</p>
+                    <p><i class="fa fa-clock-o"></i><b>Temps de préparation nécessaire : </b>{{recipeClicked.timePreparation}}</p>
+                    <p><i class="fa fa-clock-o"></i><b>Pour : </b>{{recipeClicked.nbUser}} personne(s)</p>
+                    <p> <b>Ustensiles nécessaires : </b></p>
 
-</div>
+                    <div ng-if="recipeClicked.listUstensil != null">
+                        <div ng-repeat="row in recipeClicked.listUstensil">
+                            <p> {{row.libelle}} </p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br>
+
+        <p><b>Préparation : </b> {{recipeClicked.preparation}}</p>
+
+    </div>
 

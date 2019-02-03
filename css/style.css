@@ -4,6 +4,15 @@ html {
     font-family: 'Spinnaker', Helvetica, arial, sans-serif;
     scroll-behavior: smooth;
 }
+.popupImg{
+    border-radius: 10%;
+    border : 5px solid #f39c12;
+}
+
+
+.ngdialog.ngdialog-theme-default.custom-width .ngdialog-content {
+    width: 60%;
+}
 * {
     margin: 0;
     padding: 0;

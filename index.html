@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/scrolling-nav.css" >
     <link rel=stylesheet href="css/selectize.css">
+    <link rel=stylesheet href="css/popup.css">
     <link rel=stylesheet href="css/style.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700">
 
@@ -48,11 +49,13 @@
 <!-- NAVBAR Fixée en entete -->
 <nav class="navbar sticky-top ">
     <div class="pos-f-t">
+
         <nav class="navbar navbar-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </nav>
+
         <div class="collapse" id="navbarToggleExternalContent">
             <div class="navbar p-4">
                 <ul class="navbar-nav">
@@ -67,7 +70,9 @@
             </div>
         </div>
     </div>
-   <form class="formIng col-lg-8 mx-auto" name='myForm' ng-submit="submit()"  ng-view></form>
+    <img src="css/BONLOGO.png" width="90" height="90" class="d-inline-block align-top" alt="">
+
+    <form class="formIng col-lg-8 mx-auto" name='myForm' ng-submit="submit()"  ng-view></form>
 
 </nav>
 
@@ -81,6 +86,7 @@
 
     <div class="container" id="hideWhenSearch">
         <div class="jumbotron">
+
             <h1 class="display-4">{{text}}</h1>
         </div>
 
@@ -96,9 +102,9 @@
                         </div>
                     </div>
                     <ul class="media">
-                        <li><i class="fa fa-clock-o"></i> 30 Minutes</li>
-                        <li><i class="fa fa-leaf"></i> Facile</li>
-                        <li><i class="fa fa-cutlery"></i> 4 personnes</li>
+                        <li><i class="fa fa-clock-o"></i> {{row.timePreparation}}</li>
+                        <li><i class="fa fa-leaf"></i> {{row.difficultyRecipe}}</li>
+                        <li><i class="fa fa-cutlery"></i>{{row.nbUser}} personne(s</li>
                     </ul>
                 </div>
                 <!-- Recipe End -->

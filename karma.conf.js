@@ -23,10 +23,8 @@ module.exports = function(config) {
       './js/angular-route.js',
       './js/angular-selectize.js',
       'js/test/Route_Multiple.js',
-      'js/test/Route_Single.js'
-
-
-
+      'js/test/Route_Single.js',
+        './node_modules/ng-dialog/js/ngDialog.js',                 // loads our modules for tests
     ],
 
 
