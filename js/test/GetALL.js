@@ -1,4 +1,4 @@
-describe("app", function () {
+describe("GetALL", function () {
 
     beforeEach(module('app'));
 
@@ -13,7 +13,7 @@ describe("app", function () {
             httpBackend.when("GET", "/recipes/recipes").respond([{}, {}, {}]);
         }));
 
-        it('doit retourner Recettes', function () {
+        it('doit retourner GET', function () {
             httpBackend.expectGET('/recipes/recipes');
             controller('RecipesAll', {
                 $scope: scope,

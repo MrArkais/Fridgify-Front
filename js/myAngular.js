@@ -1,4 +1,4 @@
-var myAngular = angular.module('app', ['selectize','ngRoute'/*,'ngMaterial','ngMessages'*/]);
+var myAngular = angular.module('app', ['selectize','ngRoute','ngDialog']);
 
 // configurer les routes
 myAngular.config(function($routeProvider, $locationProvider) {
@@ -52,7 +52,7 @@ myAngular.config(function($routeProvider, $locationProvider) {
 //=======================================
 //Controleur Resultats
 //=======================================
-myAngular.controller('printall', function ($scope, $http/*, $mdDialog*/) {
+myAngular.controller('printall', function ($scope, $http, ngDialog) {
 
     $scope.search = false;
 
@@ -91,24 +91,12 @@ myAngular.controller('printall', function ($scope, $http/*, $mdDialog*/) {
             });
     }
 
-/*
-    $scope.showDialog = function(ev) {
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'dialog1.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-        })
-            .then(function(answer) {
-                $scope.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                $scope.status = 'You cancelled the dialog.';
-            });
-    };*/
 
-})
+    $scope.clickToOpen = function () {
+        ngDialog.open({ template: 'pages/popup.html', className: 'ngdialog-theme-default' });
+    };
+
+});
 
 //=======================================
 //Controleur Recherche Simple
