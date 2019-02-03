@@ -109,10 +109,10 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
 //=======================================
 //Controleur Recherche Simple
 //=======================================
-myAngular.controller('Single', function($rootScope,$scope, $http) {
-    $scope.disable = false;
+    myAngular.controller('Single', function($rootScope,$scope, $http) {
+        $scope.disable = false;
 
-    console.log("Single");
+        console.log("Single");
 
     //=======================================================
     //Angular Form Bindings

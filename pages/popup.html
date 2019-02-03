@@ -4,17 +4,23 @@
         <table>
             <tr>
                 <td><a ><img  class="popupImg" width="450" height="450" ng-src="{{recipeClicked.picture}}"></a> </td>
-                <td>
+                <td class="tableau-left">
                     <br><br>
-                    <p><i class="fa fa-clock-o"></i><b>Temps de préparation nécessaire : </b>{{recipeClicked.timePreparation}}</p>
-                    <p><i class="fa fa-clock-o"></i><b>Niveau de difficulté : </b>{{recipeClicked.difficultyRecipe}}</p>
-                    <p><i class="fa fa-clock-o"></i><b>Temps de préparation nécessaire : </b>{{recipeClicked.timePreparation}}</p>
-                    <p><i class="fa fa-clock-o"></i><b>Pour : </b>{{recipeClicked.nbUser}} personne(s)</p>
-                    <p> <b>Ustensiles nécessaires : </b></p>
+                    <p><i class="fa fa-clock-o"></i><b> Temps de préparation nécessaire : </b>{{recipeClicked.timePreparation}}</p>
+                    <p><i class="fa fa-clock-o"></i><b> Niveau de difficulté : </b>{{recipeClicked.difficultyRecipe}}</p>
+                    <p><i class="fa fa-clock-o"></i><b> Ingrédient : </b></p>
+                    <div ng-if="recipeClicked.listIngredient != null">
+                        <div ng-repeat="row in recipeClicked.listIngredient">
+                            <p>  {{row.quantity}} {{row.title}} </p>
+                        </div>
+                    </div>
+
+                    <p><i class="fa fa-clock-o"></i><b> Pour : </b>{{recipeClicked.nbUser}} personne(s)</p>
+                    <p> <b> Ustensiles nécessaires : </b></p>
 
                     <div ng-if="recipeClicked.listUstensil != null">
                         <div ng-repeat="row in recipeClicked.listUstensil">
-                            <p> {{row.libelle}} </p>
+                            <p>  {{row.libelle}} </p>
                         </div>
                     </div>
                 </td>
@@ -22,7 +28,7 @@
         </table>
         <br>
 
-        <p><b>Préparation : </b> {{recipeClicked.preparation}}</p>
+        <p class="tableau-bas"><b>Préparation : </b> {{recipeClicked.preparation}}</p>
 
     </div>
 
