@@ -206,6 +206,10 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
 
         };
 
+        $scope.reloadPage = function () {
+            window.location.reload();
+        }
+
 
 
     });
@@ -289,7 +293,9 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
     };
 
 
-
+        $scope.reloadPage = function () {
+            window.location.reload();
+        }
 });
 
 
@@ -366,6 +372,9 @@ myAngular.controller('Multiple', function($scope, $http, $rootScope) {
 
     };
 
+    $scope.reloadPage = function () {
+        window.location.reload();
+    }
 
 
 });
