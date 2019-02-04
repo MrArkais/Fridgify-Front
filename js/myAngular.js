@@ -1,4 +1,4 @@
-var myAngular = angular.module('app', ['selectize','ngRoute','ngMaterial','ngMessages']);
+var myAngular = angular.module('app', ['selectize','ngRoute','ngDialog']);
 
 // configurer les routes
 myAngular.config(function($routeProvider, $locationProvider) {
@@ -18,11 +18,12 @@ myAngular.config(function($routeProvider, $locationProvider) {
             controller  : 'Single'
         })
 
-        // route for the contact page
-        .when('/contact', {
-            templateUrl : 'pages/contact.html',
-            controller  : 'contactController'
-        })
+        //route pour la recherche avec des ustensiles
+        .when('/ustens', {
+        templateUrl : 'pages/ustensearch.html',
+            controller : 'Ustens'
+    })
+
 
         .otherwise ({
             templateUrl : 'pages/multiplesearch.html',
@@ -37,9 +38,27 @@ myAngular.config(function($routeProvider, $locationProvider) {
 //=======================================
 
 //=======================================
+//Controlleur pour faire tests (get All)
+//=======================================
+(function (module) {
+
+    var RecipesAll = function ($scope, $http) {
+
+        $http.get("/recipes/recipes")
+            .then(function (result) {
+                $scope.recipes = result.data;
+            });
+    };
+
+    module.controller("RecipesAll",
+        ["$scope", "$http", RecipesAll]);
+
+}(angular.module("app")));
+
+//=======================================
 //Controleur Resultats
 //=======================================
-myAngular.controller('printall', function ($scope, $http, $mdDialog) {
+myAngular.controller('printall', function ($scope, $http, ngDialog) {
 
     $scope.search = false;
 
@@ -66,7 +85,7 @@ myAngular.controller('printall', function ($scope, $http, $mdDialog) {
         $http.get(uriAllRecipe)
             .then(function(response) {
                 console.log(response.data.length);
-                if (response.data.length == 0)
+                if (response.data.length === 0)
                 {
                     $scope.allRecipe = null;
                 }
@@ -79,31 +98,108 @@ myAngular.controller('printall', function ($scope, $http, $mdDialog) {
     }
 
 
-    $scope.showDialog = function(ev) {
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: 'dialog1.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-        })
-            .then(function(answer) {
-                $scope.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                $scope.status = 'You cancelled the dialog.';
-            });
+    $scope.clickToOpen = function (row) {
+        $scope.recipeClicked = row;
+        console.log("Data ",row);
+
+        ngDialog.open({
+            template: 'pages/popup.html',
+            className:"ngdialog-theme-default custom-width",
+            scope: $scope
+        });
+
     };
 
-})
+});
+
+//=======================================
+//Controleur Recherche avec Ustensiles
+//=======================================
+    myAngular.controller('Ustens', function($rootScope,$scope, $http) {
+        $scope.disable = false;
+
+        console.log("Ustens");
+
+        //=======================================================
+        //Angular Form Bindings
+        //=======================================================
+        $scope.myModel;
+
+
+        $scope.myConfig = {
+            create: true,
+            onChange: function(value){
+                console.log('onChange', value)
+            },
+            // maxItems: 1,
+            // required: true,
+        }
+
+
+        $scope.list = [];
+        $scope.text = '';
+
+        $scope.submit = function()
+        {
+
+            if ($scope.myModel !== "" && $scope.myModel != null)
+            {
+
+                $scope.ingredientUstens= $scope.myModel.toString();
+
+
+
+                var completeURL = "http://localhost:9090/recipes/find/ustensil/"+$scope.ingredientUstens;
+
+
+                $http.get(completeURL)
+                    .then(function(response) {
+
+                        console.log(response.data.length);
+                        if (response.data.length === 0)
+                        {
+                            $scope.data = null;
+                        }
+                        else {
+                            $scope.data = response.data;
+                            console.log($scope.data);
+                        }
+
+                        $scope.length = response.data.length;
+
+                        $rootScope.$broadcast('length', $scope.length);
+                        $rootScope.$broadcast('print', $scope.data);
+                        $rootScope.$broadcast('search', true);
+                    });
+
+
+            }
+            else {
+                $scope.data = null;
+                $scope.empty = true;
+                $scope.length = 0;
+            }
+
+
+
+        };
+
+
+
+    });
+
+
+
+
+
 
 //=======================================
 //Controleur Recherche Simple
 //=======================================
-myAngular.controller('Single', function($rootScope,$scope, $http) {
-    $scope.disable = false;
+    myAngular.controller('Single', function($rootScope,$scope, $http) {
+        $scope.disable = false;
 
-    console.log("Single");
+        console.log("Single");
 
     //=======================================================
     //Angular Form Bindings
@@ -127,7 +223,7 @@ myAngular.controller('Single', function($rootScope,$scope, $http) {
     $scope.submit = function()
     {
 
-        if ($scope.myModel != "" && $scope.myModel != null)
+        if ($scope.myModel !== "" && $scope.myModel != null)
         {
 
             $scope.ingredient= $scope.myModel.toString();
@@ -142,7 +238,7 @@ myAngular.controller('Single', function($rootScope,$scope, $http) {
                 .then(function(response) {
 
                     console.log(response.data.length);
-                    if (response.data.length == 0)
+                    if (response.data.length === 0)
                     {
                         $scope.data = null;
                     }
@@ -183,8 +279,6 @@ myAngular.controller('Multiple', function($scope, $http, $rootScope) {
     $scope.disable = false;
 
     console.log("Multiple");
-
-
 
     //=======================================================
     //Angular Form Bindings
