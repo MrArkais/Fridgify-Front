@@ -126,6 +126,7 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
         $scope.myModel;
 
 
+
         $scope.myConfig = {
             create: true,
             onChange: function(value){
@@ -139,6 +140,26 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
         $scope.list = [];
         $scope.text = '';
 
+        $scope.allRecipeUstensil = [];
+        $scope.allRecipeUstensilString = [];
+
+        var uriAllRecipe = "http://localhost:9090/recipes/ustensil";
+        $http.get(uriAllRecipe)
+            .then(function(response) {
+                console.log(response.data.length);
+                if (response.data.length === 0)
+                {
+                    allRecipeUstensil = null;
+                }
+                else {
+                    $scope.allRecipeUstensil = response.data;
+                    console.log("Ustensil 1",$scope.allRecipeUstensil);
+                }
+
+                $rootScope.$broadcast('allRecipeUstensil',response.data);
+            });
+
+
         $scope.submit = function()
         {
 
@@ -149,7 +170,8 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
 
 
 
-                var completeURL = "http://localhost:9090/recipes/find/ustensil/"+$scope.ingredientUstens;
+                var completeURL = "http://localhost:9090/recipes/find/ustensil/"+$scope.ingredientUstens+"/"+$scope.selectedUstensil;
+
 
 
                 $http.get(completeURL)
@@ -183,6 +205,10 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
 
 
         };
+
+        $scope.reloadPage = function () {
+            window.location.reload();
+        }
 
 
 
@@ -267,7 +293,9 @@ myAngular.controller('printall', function ($scope, $http, ngDialog) {
     };
 
 
-
+        $scope.reloadPage = function () {
+            window.location.reload();
+        }
 });
 
 
@@ -344,8 +372,28 @@ myAngular.controller('Multiple', function($scope, $http, $rootScope) {
 
     };
 
+    $scope.reloadPage = function () {
+        window.location.reload();
+    }
 
 
 });
+
+
+function getallRecipe(){
+
+    var uriAllRecipe = "http://localhost:9090/recipes/recipes";
+    $http.get(uriAllRecipe)
+        .then(function(response) {
+            console.log(response.data.length);
+            if (response.data.length === 0)
+            {
+                return null;
+            }
+            else {
+               return data;
+            }
+        });
+}
 
 

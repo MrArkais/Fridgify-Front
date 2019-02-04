@@ -2,7 +2,9 @@
 
 <div class="pos-f-t">
 
-    <nav class="navbar navbar-light">
+
+    <nav class=" nav-item active navbar navbar-light">
+        <a class="nav-link" href="/Fridgify-Front/" ng-click="reloadPage()">Accueil</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,6 +35,9 @@
         Fridgify
     </a>
     <selectize  class="mr-sm-2 " placeholder='Je cherche une recette faite au four ?...' options='myOptions' name='myName' config="myConfig" ng-model="myModel" ng-disabled='disable' required='true'></selectize>
+    <select ng-model="selectedUstensil">
+        <option ng-repeat="x in allRecipeUstensil">{{x.libelle}}</option>
+    </select>
     <button class="btn  my-2 my-sm-0 " type="submit"><i class="fas fa-search"></i></button>
 
 </form>
