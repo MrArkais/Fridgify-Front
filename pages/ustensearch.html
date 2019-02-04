@@ -33,6 +33,9 @@
         Fridgify
     </a>
     <selectize  class="mr-sm-2 " placeholder='Je cherche une recette faite au four ?...' options='myOptions' name='myName' config="myConfig" ng-model="myModel" ng-disabled='disable' required='true'></selectize>
+    <select ng-model="selectedUstensil">
+        <option ng-repeat="x in allRecipeUstensil">{{x.libelle}}</option>
+    </select>
     <button class="btn  my-2 my-sm-0 " type="submit"><i class="fas fa-search"></i></button>
 
 </form>
