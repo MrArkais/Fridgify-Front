@@ -13,6 +13,8 @@ Fridgify est une application web permettant de proposer aux utilisateurs de trou
 
 [Back-end](https://github.com/mlazaar/Fridgify)
 
+[Presentation](https://github.com/mlazaar/FridgifyReveal)
+
 ## Collaborateurs
 
   - Quentin JEANNOT
